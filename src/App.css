@@ -1,0 +1,255 @@
+:root {
+  --parallax-aspect-ratio: 1.3335;
+  --background-color: rgb(6, 17, 24);
+  --body-column-width: 80rem;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  font-family: Cinzel, serif;
+  color: white;
+  background-color: var(--background-color);
+}
+
+body {
+  background-color: var(--background-color);
+  font-size: large;
+}
+p {
+  margin: 0;
+}
+a {
+  color: white;
+}
+
+.App {
+  width: 100%;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.countdown_container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(1, 175, 169);
+  box-shadow: 0 0 20px rgb(0, 44, 42);
+}
+.countdown_timer {
+  display: grid;
+  grid-template-columns: auto 1rem repeat(12, 1em);
+  color: rgb(0, 44, 42);
+}
+.countdown_timer>p {
+  text-align: center;
+  margin: 5px;
+}
+
+.disclaimer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: darkred;
+  padding: 10px;
+  margin: 0;
+  border-radius: 10px;
+}
+
+.parallax-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: calc(100vw / var(--parallax-aspect-ratio));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+/* Transition seam fix for chromium */
+.parallax-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  height: 8px;
+  transform: translateY(8px);
+  background-color: var(--background-color);
+}
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  bottom: 0;
+  /* object-fit: cover;
+  object-position: bottom; */
+}
+.layer-hero {
+  max-width: 20vw;
+  height: auto;
+  top: 0;
+  margin-top: 3rem;
+  object-fit: contain;
+}
+
+.padder {
+  min-height: 100rem;
+  /* background-color: var(--background-color) */
+}
+
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 3rem;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+  max-width: var(--body-column-width);
+  margin: auto;
+}
+
+.align-center {
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+
+.weathered-mask {
+  mask-image: url(./assets/socials-mask.png);
+  -webkit-mask-image: url(./assets/socials-mask.png);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.header {
+  text-align: center;
+}
+.separator {
+  height: 0.25rem;
+  width: 100%;
+  max-width: 30rem;
+  margin: auto;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0) url(./assets/separator.svg) no-repeat 0 0/100% 100%;
+}
+
+.tickets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.tickets a {
+  text-decoration: none;
+  color: rgb(82, 53, 0);
+  background-color: rgb(238, 170, 45);
+  margin: 3rem;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transition: 0.5s ease;
+  transform: rotate(5deg);
+}
+.tickets a:hover {
+  transform: rotate(7deg) scale(1.1);
+}
+
+.socials-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.socials-links a {
+  text-decoration: none;
+  color: white;
+  margin: 1rem;
+  padding: 1rem;
+  transition: 0.5s ease;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.socials-links a.website {
+  background-color: rgb(146, 104, 27);
+  transform: rotate(4deg);
+}
+.socials-links a.website:hover {
+  transform: rotate(5deg) scale(1.1);
+}
+.socials-links a.twitter {
+  background-color: black;
+  transform: rotate(-3deg);
+}
+.socials-links a.twitter:hover {
+  transform: rotate(-4deg) scale(1.1);
+}
+.socials-links a.discord {
+  background-color: rgb(114, 137, 218);
+  transform: rotate(2deg);
+}
+.socials-links a.discord:hover {
+  transform: rotate(3deg) scale(1.1);
+}
+.socials-links a.bluesky {
+  background-color: rgb(15, 115, 255);
+  transform: rotate(-5deg);
+}
+.socials-links a.bluesky:hover {
+  transform: rotate(-6deg) scale(1.1);
+}
+.socials-links a.youtube {
+  background-color: rgb(154, 0, 31);
+  transform: rotate(2deg); 
+}
+.socials-links a.youtube:hover {
+  transform: rotate(3deg) scale(1.1); 
+}
+.socials-links a.twitch {
+  background-color: rgb(169, 112, 255);
+  transform: rotate(-2deg);
+}
+.socials-links a.twitch:hover {
+  transform: rotate(-3deg) scale(1.1);
+}
+.socials-links a.instagram {
+  background-color: rgb(199, 55, 170);
+  transform: rotate(3deg);
+}
+.socials-links a.instagram:hover {
+  transform: rotate(4deg) scale(1.1);
+}
+.socials-links a.facebook {
+  background-color: rgb(8, 102, 255);
+  transform: rotate(-1deg);
+}
+.socials-links a.facebook:hover {
+  transform: rotate(-2deg) scale(1.1);
+}
+.socials-links a.facebook-group {
+  background-color: rgb(8, 102, 255);
+  transform: rotate(2deg);
+}
+.socials-links a.facebook-group:hover {
+  transform: rotate(3deg) scale(1.1);
+}
