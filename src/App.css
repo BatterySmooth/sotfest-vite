@@ -22,6 +22,8 @@ a {
   text-align: center;
   color: white;
   background-color: var(--background-color);
+  
+  overflow-x: hidden;
 }
 
 .countdown_container {
@@ -160,6 +162,7 @@ main {
   align-items: center;
   transition: 0.5s ease;
   transform: rotate(5deg);
+  max-width: 100%;
 }
 .tickets a:hover {
   transform: rotate(7deg) scale(1.1);
