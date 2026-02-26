@@ -80,17 +80,6 @@ a {
   margin-top: 3rem;
   object-fit: contain;
 }
-/* Parallax seam fix for chromium */
-.header-container::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 4px;
-  height: 8px;
-  transform: translateY(8px);
-  background-color: var(--background-color);
-}
 .header-fire {
   position: absolute;
   width: 27%;
@@ -100,11 +89,31 @@ a {
   transform: translate(-50%, -50%);
 }
 
+/* Parallax seam fix for chromium */
+main::after, .header-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(4px);
+  background-color: var(--background-color);
+  z-index: 1000;
+}
+.header-container::after {
+  bottom: 2px;
+}
+main::after {
+  top: 2px;
+}
+
+
 main {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 3rem;
+  z-index: 999;
 }
 .section {
   display: flex;

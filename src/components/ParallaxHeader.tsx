@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react"
+import { useEffect, useRef, useState, type ReactNode } from "react"
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all'
@@ -25,11 +25,13 @@ interface ParallaxLayer {
   factor: number,
   isHero?: boolean,
   isFire?: boolean,
+  static?: boolean,
 }
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
-const layers: ParallaxLayer[] = [
+export const allLayers: ParallaxLayer[] = [
+  { source: full, factor: 0, static: true },
   { source: layer6, factor: 98 },
   { source: layer5, factor: 98 },
   { source: layer4, factor: 95 },
@@ -42,22 +44,23 @@ const layers: ParallaxLayer[] = [
   { source: layer1, factor: 0 },
 ];
 
+
 export default function ParallaxHeader({ disableParallax, children }: ParallaxHeaderProps) {
+
+  const layers = disableParallax
+    ? allLayers.filter(d => d.static || d.isHero)
+    : allLayers.filter(d => !d.static);
 
   // Static header
   if (disableParallax) {
     return (
       <>
         <div className="header-container">
-          <img
-            src={full}
-            className="header-layer"
-          />
-          {layers.filter(d => d.isHero).map((data, index) => (
+          {layers.filter(d => d.static || d.isHero).map((data, index) => (
             <img
               key={index}
               src={data.source}
-              className="header-layer header-hero"
+              className={`header-layer${data.isHero ? ' header-hero' : ''}`}
             />
           ))}
         </div>
@@ -110,7 +113,7 @@ export default function ParallaxHeader({ disableParallax, children }: ParallaxHe
             <img
               key={index}
               src={data.source}
-              className={`header-layer ${data.isHero ? ' header-hero' : ''}`}
+              className={`header-layer${data.isHero ? ' header-hero' : ''}`}
             />
           ))}
         </div>

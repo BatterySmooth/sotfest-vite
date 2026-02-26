@@ -5,6 +5,7 @@ import Article from './components/Article';
 import { useEffect, useState } from 'react';
 
 const App = () => {
+
   function useShouldDisableParallax() {
     const [disable, setDisable] = useState(false);
     useEffect(() => {
