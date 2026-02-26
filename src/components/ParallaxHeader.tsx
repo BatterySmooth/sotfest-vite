@@ -49,9 +49,16 @@ export default function ParallaxHeader({ disableParallax, children }: ParallaxHe
     return (
       <>
         <div className="header-container">
-          <img src={full} className="header-layer"/>
-          {layers.filter(d => d.isHero).map((data) => (
-            <img src={data.source} className="header-layer header-hero"/>
+          <img
+            src={full}
+            className="header-layer"
+          />
+          {layers.filter(d => d.isHero).map((data, index) => (
+            <img
+              key={index}
+              src={data.source}
+              className="header-layer header-hero"
+            />
           ))}
         </div>
         {children}

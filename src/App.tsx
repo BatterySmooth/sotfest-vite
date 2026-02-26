@@ -18,6 +18,8 @@ const App = () => {
 
   const disableParallax = useShouldDisableParallax();
 
+  console.warn(`DISABLE_PARALLAX?: ${disableParallax} =================================`);
+
   return (
     <>
       <ParallaxHeader disableParallax={disableParallax}>

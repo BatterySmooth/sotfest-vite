@@ -17,9 +17,9 @@ a {
 #root {
   margin: 0;
   padding: 0;
-  text-align: center;
   width: 100%;
   font-family: Cinzel, serif;
+  text-align: center;
   color: white;
   background-color: var(--background-color);
 }
