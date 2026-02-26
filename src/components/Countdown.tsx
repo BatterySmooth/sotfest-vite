@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import styles from './Countdown.module.css';
+
 interface TimeLeft {
   days: number;
   hours: number;
@@ -42,22 +44,22 @@ export default function Countdown() {
   const [s1, s2] = splitDigits(timeLeft.seconds);
 
   return (
-    <div className="countdown_container">
-      <div className="countdown_timer">
-        <p>Countdown</p>
-        <p></p>
-        <p>{d1}</p>
-        <p>{d2}</p>
-        <p>{d3}</p>
-        <p>:</p>
-        <p>{h1}</p>
-        <p>{h2}</p>
-        <p>:</p>
-        <p>{m1}</p>
-        <p>{m2}</p>
-        <p>:</p>
-        <p>{s1}</p>
-        <p>{s2}</p>
+    <div className={styles.container}>
+      <div className={styles.timer}>
+        <p className={styles.digit}>Countdown</p>
+        <p className={styles.digit}></p>
+        <p className={styles.digit}>{d1}</p>
+        <p className={styles.digit}>{d2}</p>
+        <p className={styles.digit}>{d3}</p>
+        <p className={styles.digit}>:</p>
+        <p className={styles.digit}>{h1}</p>
+        <p className={styles.digit}>{h2}</p>
+        <p className={styles.digit}>:</p>
+        <p className={styles.digit}>{m1}</p>
+        <p className={styles.digit}>{m2}</p>
+        <p className={styles.digit}>:</p>
+        <p className={styles.digit}>{s1}</p>
+        <p className={styles.digit}>{s2}</p>
       </div>
     </div>
   );

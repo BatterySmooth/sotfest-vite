@@ -22,28 +22,7 @@ a {
   text-align: center;
   color: white;
   background-color: var(--background-color);
-  
   overflow-x: hidden;
-}
-
-.countdown_container {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(1, 175, 169);
-  box-shadow: 0 0 20px rgb(0, 44, 42);
-}
-.countdown_timer {
-  display: grid;
-  grid-template-columns: auto 1rem repeat(12, 1em);
-  color: rgb(0, 44, 42);
-}
-.countdown_timer>p {
-  text-align: center;
-  margin: 5px;
 }
 
 .disclaimer {
@@ -63,7 +42,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white; 
   overflow: hidden;
 }
 .header-layer {
@@ -95,16 +73,16 @@ main::after, .header-container::after {
   position: absolute;
   left: 0;
   right: 0;
-  height: 4px;
-  transform: translateY(4px);
+  height: 8px;
+  transform: translateY(8px);
   background-color: var(--background-color);
   z-index: 1000;
 }
 .header-container::after {
-  bottom: 2px;
+  bottom: 4px;
 }
 main::after {
-  top: 2px;
+  top: calc((100vw / var(--parallax-aspect-ratio)) + 4px);
 }
 
 
@@ -113,7 +91,6 @@ main {
   flex-direction: column;
   width: 100%;
   gap: 3rem;
-  z-index: 999;
 }
 .section {
   display: flex;

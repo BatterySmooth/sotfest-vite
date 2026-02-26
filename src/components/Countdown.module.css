@@ -1,0 +1,19 @@
+.container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(1, 175, 169);
+  box-shadow: 0 0 20px rgb(0, 44, 42);
+}
+.timer {
+  display: grid;
+  grid-template-columns: auto 1rem repeat(12, 1em);
+  color: rgb(0, 44, 42);
+}
+.digit {
+  text-align: center;
+  margin: 5px;
+}
