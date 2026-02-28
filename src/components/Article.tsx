@@ -1,6 +1,7 @@
 import style from './Article.module.css'
 
 import ticketImg from "@/assets/ticket.svg"
+import tshirtImg from "@/assets/tshirt.svg"
 import { LinkButton } from "./LinkButton";
 import { SocialLinks } from "./SocialLinks";
 import { SectionHeader } from "./SectionHeader";
@@ -11,11 +12,9 @@ export const Article: React.FC = () => {
   return (
     <ColumnLayout>
       <Section>
+        <SectionHeader text="10th & 11th July 2026 - Bescot Stadium"/>
+        <p>An event by the community, for the community!</p>
         <div className={style.ticketSection}>
-          <div>
-            <SectionHeader text="10th & 11th July 2026 - Bescot Stadium"/>
-            <p>An event by the community, for the community!</p>
-          </div>
           <LinkButton
             className={style.ticketButton}
             href="https://sotfest.uk/tickets"
@@ -24,6 +23,15 @@ export const Article: React.FC = () => {
             color="rgb(82, 53, 0)"
             backgroundColor="rgb(238, 170, 45)"
             rotation={5}
+          />
+          <LinkButton
+            className={style.ticketButton}
+            href="https://sotfest.myspreadshop.co.uk/"
+            text="Merch"
+            image={tshirtImg}
+            color="rgb(82, 53, 0)"
+            backgroundColor="rgb(238, 170, 45)"
+            rotation={-3}
           />
         </div>
       </Section>
