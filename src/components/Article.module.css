@@ -7,3 +7,8 @@
   justify-content: center;
   gap: 2rem;
 }
+
+.ticketButton {
+  font-size: xx-large;
+  padding: 2rem !important;
+}

@@ -16,7 +16,8 @@ export const Article: React.FC = () => {
             <SectionHeader text="10th & 11th July 2026 - Bescot Stadium"/>
             <p>An event by the community, for the community!</p>
           </div>
-          <LinkButton 
+          <LinkButton
+            className={style.ticketButton}
             href="https://sotfest.uk/tickets"
             text="Tickets"
             image={ticketImg}
