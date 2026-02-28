@@ -39,6 +39,10 @@ export const Article: React.FC = () => {
           <a href="https://www.instagram.com/zaque_art/" target="blank">@zaque_art</a>
         </div>
       </Section>
+
+      <Section>
+        <></>
+      </Section>
     </ColumnLayout>
   );
 };
