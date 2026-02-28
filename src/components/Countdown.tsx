@@ -9,7 +9,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-export default function Countdown() {
+export const Countdown: React.FC = () => {
   const targetDate: Date = new Date("2026-07-10T09:00:00");
 
   const calculateTimeLeft = (): TimeLeft => {

@@ -1,0 +1,9 @@
+.ticketSection {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 2rem;
+}

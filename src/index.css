@@ -35,6 +35,13 @@ body {
   line-height: 1.1;
 } */
 
+p {
+  margin: 0;
+}
+a {
+  color: white;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;

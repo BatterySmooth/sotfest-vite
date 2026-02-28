@@ -1,7 +1,7 @@
 import './App.css';
-import Countdown from './components/Countdown';
-import ParallaxHeader from './components/ParallaxHeader';
-import Article from './components/Article';
+import { Countdown } from './components/Countdown';
+import { ParallaxHeader } from './components/ParallaxHeader';
+import { Article } from './components/Article';
 import { useEffect, useState } from 'react';
 
 const App = () => {
@@ -22,9 +22,7 @@ const App = () => {
   return (
     <>
       <ParallaxHeader disableParallax={disableParallax}>
-        <Article>
-          <></>
-        </Article>
+        <Article />
       </ParallaxHeader>
       <Countdown />
       <p className="disclaimer">Unofficial website</p>

@@ -1,0 +1,11 @@
+.header {
+  text-align: center;
+}
+.separator {
+  height: 0.25rem;
+  width: 100%;
+  max-width: 30rem;
+  margin: auto;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0) url(../assets/separator.svg) no-repeat 0 0/100% 100%;
+}
