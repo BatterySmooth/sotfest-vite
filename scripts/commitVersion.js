@@ -3,17 +3,18 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 
-// Read package.json version
+// Read the current package.json version
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const pkgPath = path.resolve(__dirname, "../package.json");
 const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
 const version = pkg.version;
 
-// Create Git tag
+// Commit build version
 try {
-  execSync(`git tag v${version}`, { stdio: 'inherit' });
-  console.log(`Created Git tag v${version}`);
+  execSync('git add package.json', { stdio: 'inherit' });
+  execSync(`git commit -m "Build v${version}"`, { stdio: 'inherit' });
+  console.log(`Committed package.json with message: Build v${version}`);
 } catch (err) {
   console.error(err.message);
   process.exit(1);
