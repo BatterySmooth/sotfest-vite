@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from './Countdown.module.css';
+import styles from './AppHeader.module.css';
 
 interface TimeLeft {
   days: number;
@@ -8,7 +8,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-export const Countdown: React.FC = () => {
+export const AppHeader: React.FC = () => {
   const targetDate: Date = new Date("2026-07-10T09:00:00");
 
   const calculateTimeLeft = (): TimeLeft => {

@@ -1,21 +1,22 @@
-import { LinkButton } from "@/components/LinkButton"
+import { LinkButton } from "@components/LinkButton"
 import style from './SocialLinks.module.css'
-import xImg from "@/assets/x.svg"
-import discordImg from "@/assets/discord.svg"
-import blueskyImg from "@/assets/bluesky.svg"
-import youtubeImg from "@/assets/youtube.svg"
-import twitchImg from "@/assets/twitch.svg"
-import instagramImg from "@/assets/instagram.svg"
-import facebookImg from "@/assets/facebook.svg"
+
+import XIcon from "@icons/x.svg?react"
+import DiscordIcon from "@icons/discord.svg?react"
+import BlueskyIcon from "@icons/bluesky.svg?react"
+import YoutubeIcon from "@icons/youtube.svg?react"
+import TwitchIcon from "@icons/twitch.svg?react"
+import InstagramIcon from "@icons/instagram.svg?react"
+import FacebookIcon from "@icons/facebook.svg?react"
 
 const SocialStyles = {
-  x: { image: xImg, backgroundColor: "black " },
-  discord: { image: discordImg, backgroundColor: "rgb(114, 137, 218)" },
-  bluesky: { image: blueskyImg, backgroundColor: "rgb(15, 115, 255)" },
-  youtube: { image: youtubeImg, backgroundColor: "rgb(154, 0, 31)" },
-  twitch: { image: twitchImg, backgroundColor: "rgb(169, 112, 255)" },
-  instagram: { image: instagramImg, backgroundColor: "rgb(199, 55, 170)" },
-  facebook: { image: facebookImg, backgroundColor: "rgb(8, 102, 255)" },
+  x: { image: XIcon, backgroundColor: "black" },
+  discord: { image: DiscordIcon, backgroundColor: "rgb(114, 137, 218)" },
+  bluesky: { image: BlueskyIcon, backgroundColor: "rgb(15, 115, 255)" },
+  youtube: { image: YoutubeIcon, backgroundColor: "rgb(154, 0, 31)" },
+  twitch: { image: TwitchIcon, backgroundColor: "rgb(169, 112, 255)" },
+  instagram: { image: InstagramIcon, backgroundColor: "rgb(199, 55, 170)" },
+  facebook: { image: FacebookIcon, backgroundColor: "rgb(8, 102, 255)" },
 } as const;
 
 const SocialsConfig = [
@@ -37,7 +38,7 @@ export const SocialLinks: React.FC = () => {
           key={index}
           href={social.href}
           text={social.text}
-          image={social.style.image}
+          Icon={social.style.image}
           color="white"
           backgroundColor={social.style.backgroundColor}
           rotation={social.rotation}

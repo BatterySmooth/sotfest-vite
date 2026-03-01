@@ -1,7 +1,7 @@
-import { Countdown } from './components/Countdown';
-import { ParallaxHeader } from './components/ParallaxHeader';
-import { Article } from './blocks/Article';
-import './App.css';
+import { AppHeader } from '@components/AppHeader';
+import { ParallaxHeader } from '@components/ParallaxHeader';
+import { Article } from '@blocks/Article';
+import '@/App.css';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
       <ParallaxHeader>
         <Article />
       </ParallaxHeader>
-      <Countdown />
+      <AppHeader />
       <p className="disclaimer">Unofficial website</p>
     </>
   );

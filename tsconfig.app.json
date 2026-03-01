@@ -26,7 +26,12 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@core/*": ["src/core/*"],
+      "@components/*": ["src/components/*"],
+      "@blocks/*": ["src/blocks/*"],
+      "@assets/*": ["src/assets/*"],
+      "@icons/*": ["src/assets/icons/*"],
     }
   },
   "include": ["src"]

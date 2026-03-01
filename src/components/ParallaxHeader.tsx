@@ -2,19 +2,19 @@ import { useContext, useEffect, useRef, type ReactNode } from "react"
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all'
-import { AppContext } from "@/core/AppProvider"
+import { AppContext } from "@core/AppProvider"
 import style from './ParallaxHeader.module.css'
-import full from "@/assets/layers/Full.png"
-import layer1 from "@/assets/layers/1.png"
-import layer2 from "@/assets/layers/2.png"
-import fire from "@/assets/layers/fire.gif"
-import layer3 from "@/assets/layers/3.png"
-import layer4 from "@/assets/layers/4.png"
-import layer5 from "@/assets/layers/5.png"
-import layer6 from "@/assets/layers/6.jpg"
-import logo from "@/assets/logo.jpg"
-import xbrush from "@/assets/xbrushed.png"
-import xbrush2 from "@/assets/xbrushed2.png"
+import full from "@assets/layers/Full.png"
+import layer1 from "@assets/layers/1.png"
+import layer2 from "@assets/layers/2.png"
+import fire from "@assets/layers/fire.gif"
+import layer3 from "@assets/layers/3.png"
+import layer4 from "@assets/layers/4.png"
+import layer5 from "@assets/layers/5.png"
+import layer6 from "@assets/layers/6.jpg"
+import logo from "@assets/logo.jpg"
+import xbrush from "@assets/xbrushed.png"
+import xbrush2 from "@assets/xbrushed2.png"
 
 interface ParallaxHeaderProps {
   children: ReactNode,

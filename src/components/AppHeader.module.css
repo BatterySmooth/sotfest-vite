@@ -8,9 +8,9 @@
   gap: 1em;
   align-items: center;
   justify-content: center;
-  background-color: rgb(1, 175, 169);
-  box-shadow: 0 0 20px rgb(0, 44, 42);
-  color: rgb(0, 44, 42);
+  background-color: var(--theme-primary);
+  box-shadow: 0 0 20px var(--theme-primary-d70);
+  color: var(--theme-primary-d70);
 }
 .timer {
   display: grid;

@@ -1,11 +1,12 @@
-import { SocialLinks } from "@/blocks/SocialLinks";
-import { LinkButton } from "@/components/LinkButton";
-import { SectionHeader } from "@/components/SectionHeader";
-import { ColumnLayout } from "@/components/ColumnLayout";
-import { Section } from "@/components/Section";
-import style from './Article.module.css'
-import ticketImg from "@/assets/ticket.svg"
-import tshirtImg from "@/assets/tshirt.svg"
+import { Theme } from "@core/Theme";
+import { SocialLinks } from "@blocks/SocialLinks";
+import { LinkButton } from "@components/LinkButton";
+import { SectionHeader } from "@components/SectionHeader";
+import { ColumnLayout } from "@components/ColumnLayout";
+import { Section } from "@components/Section";
+import style from './Article.module.css';
+import TicketIcon from "@icons/ticket.svg?react";
+import TShirtIcon from "@icons/tshirt.svg?react";
 
 export const Article: React.FC = () => {
   return (
@@ -18,18 +19,16 @@ export const Article: React.FC = () => {
             className={style.ticketButton}
             href="https://sotfest.uk/tickets"
             text="Tickets"
-            image={ticketImg}
-            color="rgb(82, 53, 0)"
-            backgroundColor="rgb(238, 170, 45)"
+            Icon={TicketIcon}
+            theme={Theme.Secondary}
             rotation={5}
           />
           <LinkButton
             className={style.ticketButton}
             href="https://sotfest.myspreadshop.co.uk/"
             text="Merch"
-            image={tshirtImg}
-            color="rgb(82, 53, 0)"
-            backgroundColor="rgb(238, 170, 45)"
+            Icon={TShirtIcon}
+            theme={Theme.Parimary}
             rotation={-3}
           />
         </div>
