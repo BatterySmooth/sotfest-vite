@@ -85,33 +85,20 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
   if (!context) throw new Error("Must be used inside AppProvider");
 
   const layers = filterLayers(context.isReducedMotion);
-
-  // Static header
-  if (context.isTouch || context.isNoHover || context.isReducedMotion) {
-    return (
-      <>
-        <div className={style.container}>
-          {layers.map(renderLayer)}
-        </div>
-        {children}
-      </>
-    );
-  }
-
-  // Parallax header
+  const isStatic = context.isTouch || context.isNoHover || context.isReducedMotion;
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if (isStatic) return;
     ScrollSmoother.create({
       smooth: 1,
     });
-  });
+  }, [isStatic]);
 
   useEffect(() => {
+    if (isStatic) return;
     if (!parallaxRef.current) return;
-
     const layersEl = parallaxRef.current.querySelectorAll<HTMLElement>(`.${style.layer}`);
-
     layersEl.forEach((layer, i) => {
       gsap.to(layer, {
         yPercent: layers[i].factor,
@@ -125,8 +112,20 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
         },
       });
     });
-  }, [layers]);
+  }, [layers, isStatic]);
 
+  // Static header
+  if (isStatic) {
+    return (
+      <>
+        <div className={style.container}>
+          {layers.map(renderLayer)}
+        </div>
+        {children}
+      </>
+    );
+  }
+  // Parallax header
   return (
     <div id="smooth-wrapper">
       <div id="smooth-content">
@@ -137,6 +136,5 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
         {children}
       </div>
     </div>
-
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from './AppHeader.module.css';
 
 interface TimeLeft {
@@ -9,13 +9,14 @@ interface TimeLeft {
 }
 
 export const AppHeader: React.FC = () => {
-  const targetDate: Date = new Date("2026-07-10T09:00:00");
 
-  const calculateTimeLeft = (): TimeLeft => {
+  const calculateTimeLeft = useCallback((): TimeLeft => {
+    const targetDate: Date = new Date("2026-07-10T09:00:00");
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
 
-    if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    if (difference <= 0)
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     return {
       days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -23,7 +24,7 @@ export const AppHeader: React.FC = () => {
       minutes: Math.floor((difference / (1000 * 60)) % 60),
       seconds: Math.floor((difference / 1000) % 60),
     };
-  };
+  }, []);
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
 
@@ -33,7 +34,7 @@ export const AppHeader: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [targetDate]);
+  }, [calculateTimeLeft]);
 
   const splitDigits = (num: number): string[] => String(num).padStart(2, "0").split("");
 
