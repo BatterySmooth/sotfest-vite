@@ -12,7 +12,7 @@
     "build:patch": "node scripts/incrementVersion.js patch && git add package.json && npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "",
+    "predeploy": "git:checkdiff",
     "deploy:major": "npm run git:checkdiff && npm run build:major && npm run deploy:commit && npm run git:tag && npm run git:push && npm run deploy:gh",
     "deploy:minor": "npm run git:checkdiff && npm run build:minor && npm run deploy:commit && npm run git:tag && npm run git:push && npm run deploy:gh",
     "deploy:patch": "npm run git:checkdiff && npm run build:patch && npm run deploy:commit && npm run git:tag && npm run git:push && npm run deploy:gh",
