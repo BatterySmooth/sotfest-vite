@@ -2,7 +2,7 @@
   "name": "sotfest-vite",
   "homepage": "https://batterysmooth.github.io/sotfest-vite",
   "private": true,
-  "version": "0.1.8",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
