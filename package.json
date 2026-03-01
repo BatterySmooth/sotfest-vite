@@ -12,13 +12,15 @@
     "build:patch": "node scripts/incrementVersion.js patch && git add package.json && npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "git diff-index --quiet HEAD -- || (echo 'Error: You have uncommitted changes! Commit them first.' && exit 1)",
-    "deploy:major": "npm run predeploy && npm run build:major && npm run deploy:commit && npm run git:tag && npm run deploy:push && gh-pages -d dist",
-    "deploy:minor": "npm run predeploy && npm run build:minor && npm run deploy:commit && npm run git:tag && npm run deploy:push && gh-pages -d dist",
-    "deploy:patch": "npm run predeploy && npm run build:patch && npm run deploy:commit && npm run git:tag && npm run deploy:push && gh-pages -d dist",
+    "predeploy": "",
+    "deploy:major": "npm run git:checkdiff && npm run build:major && npm run deploy:commit && npm run git:tag && npm run git:push && npm run deploy:gh",
+    "deploy:minor": "npm run git:checkdiff && npm run build:minor && npm run deploy:commit && npm run git:tag && npm run git:push && npm run deploy:gh",
+    "deploy:patch": "npm run git:checkdiff && npm run build:patch && npm run deploy:commit && npm run git:tag && npm run git:push && npm run deploy:gh",
     "deploy:commit": "git add package.json && git commit -m \"[TASK]: bump version\"",
+    "deploy:gh": "gh-pages -d dist",
+    "git:checkdiff": "git diff-index --quiet HEAD -- || (echo 'Error: You have uncommitted changes! Commit them first.' && exit 1)",
     "git:tag": "node scripts/createTag.js",
-    "deploy:push": "git push origin HEAD && git push origin --tags"
+    "git:push": "git push origin HEAD && git push origin --tags"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
