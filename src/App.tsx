@@ -1,6 +1,6 @@
 import { Countdown } from './components/Countdown';
 import { ParallaxHeader } from './components/ParallaxHeader';
-import { Article } from './components/Article';
+import { Article } from './blocks/Article';
 import './App.css';
 
 const App = () => {

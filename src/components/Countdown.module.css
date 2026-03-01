@@ -3,15 +3,18 @@
   top: 0;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
   align-items: center;
+  justify-content: center;
   background-color: rgb(1, 175, 169);
   box-shadow: 0 0 20px rgb(0, 44, 42);
+  color: rgb(0, 44, 42);
 }
 .timer {
   display: grid;
-  grid-template-columns: auto 1rem repeat(12, 1em);
-  color: rgb(0, 44, 42);
+  grid-template-columns: repeat(12, 1em);
 }
 .digit {
   text-align: center;

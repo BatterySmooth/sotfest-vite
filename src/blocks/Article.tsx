@@ -2,11 +2,11 @@ import style from './Article.module.css'
 
 import ticketImg from "@/assets/ticket.svg"
 import tshirtImg from "@/assets/tshirt.svg"
-import { LinkButton } from "./LinkButton";
+import { LinkButton } from "../components/LinkButton";
 import { SocialLinks } from "./SocialLinks";
-import { SectionHeader } from "./SectionHeader";
-import { ColumnLayout } from "./ColumnLayout";
-import { Section } from "./Section";
+import { SectionHeader } from "../components/SectionHeader";
+import { ColumnLayout } from "../components/ColumnLayout";
+import { Section } from "../components/Section";
 
 export const Article: React.FC = () => {
   return (

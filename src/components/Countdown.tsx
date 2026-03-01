@@ -45,9 +45,8 @@ export const Countdown: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <p className={styles.digit}>Countdown</p>
       <div className={styles.timer}>
-        <p className={styles.digit}>Countdown</p>
-        <p className={styles.digit}></p>
         <p className={styles.digit}>{d1}</p>
         <p className={styles.digit}>{d2}</p>
         <p className={styles.digit}>{d3}</p>
