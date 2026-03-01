@@ -1,16 +1,9 @@
-import React, { useState, useEffect, createContext, type ReactNode } from "react";
+import React, { useState, useEffect, type ReactNode } from "react";
+import { AppContext } from "./AppContext";
 
 interface AppProviderProps {
   children: ReactNode;
 }
-
-export interface AppContextProps {
-  isTouch: boolean
-  isReducedMotion: boolean;
-  isNoHover: boolean;
-}
-
-export const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isTouch, setIsTouch] = useState<boolean>(window.matchMedia("(pointer: coarse)").matches);
@@ -42,3 +35,5 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     </AppContext.Provider>
   );
 };
+
+export { AppContext };

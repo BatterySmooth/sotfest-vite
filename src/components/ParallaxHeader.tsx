@@ -125,7 +125,7 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
         },
       });
     });
-  }, []);
+  }, [layers]);
 
   return (
     <div id="smooth-wrapper">
