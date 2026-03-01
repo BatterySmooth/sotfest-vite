@@ -2,10 +2,8 @@ import { useContext, useEffect, useRef, type ReactNode } from "react"
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all'
-import { AppContext } from "../core/AppProvider"
-
+import { AppContext } from "@/core/AppProvider"
 import style from './ParallaxHeader.module.css'
-
 import full from "@/assets/layers/Full.png"
 import layer1 from "@/assets/layers/1.png"
 import layer2 from "@/assets/layers/2.png"

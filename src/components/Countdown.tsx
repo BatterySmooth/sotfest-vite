@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import styles from './Countdown.module.css';
 
 interface TimeLeft {

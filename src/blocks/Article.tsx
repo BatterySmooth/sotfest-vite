@@ -1,12 +1,11 @@
+import { SocialLinks } from "@/blocks/SocialLinks";
+import { LinkButton } from "@/components/LinkButton";
+import { SectionHeader } from "@/components/SectionHeader";
+import { ColumnLayout } from "@/components/ColumnLayout";
+import { Section } from "@/components/Section";
 import style from './Article.module.css'
-
 import ticketImg from "@/assets/ticket.svg"
 import tshirtImg from "@/assets/tshirt.svg"
-import { LinkButton } from "../components/LinkButton";
-import { SocialLinks } from "./SocialLinks";
-import { SectionHeader } from "../components/SectionHeader";
-import { ColumnLayout } from "../components/ColumnLayout";
-import { Section } from "../components/Section";
 
 export const Article: React.FC = () => {
   return (

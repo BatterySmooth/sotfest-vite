@@ -1,7 +1,5 @@
+import { LinkButton } from "@/components/LinkButton"
 import style from './SocialLinks.module.css'
-
-import { LinkButton } from "../components/LinkButton"
-
 import xImg from "@/assets/x.svg"
 import discordImg from "@/assets/discord.svg"
 import blueskyImg from "@/assets/bluesky.svg"

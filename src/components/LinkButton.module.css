@@ -9,7 +9,7 @@
   transform: rotate(var(--rotation));
 }
 .link:hover {
-  transform: rotate(var(--hover-rotation)) scale(1.1);
+  transform: rotate(var(--hover-rotation)) scale(var(--hover-scale));
 }
 .weathered {
   mask-image: url(../assets/socials-mask.png);
