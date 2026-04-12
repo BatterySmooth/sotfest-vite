@@ -11,7 +11,6 @@ interface TimeLeft {
 const targetDate: Date = new Date("2026-07-10T09:00:00");
 
 export const AppHeader: React.FC = () => {
-
   const calculateTimeLeft = useCallback((): TimeLeft => {
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
@@ -37,9 +36,10 @@ export const AppHeader: React.FC = () => {
     return () => clearInterval(interval);
   }, [calculateTimeLeft]);
 
-  const splitDigits = (num: number): string[] => String(num).padStart(2, "0").split("");
+  const splitDigits = (num: number, len: number = 2): string[] => 
+    String(num).padStart(len, "0").split("");
 
-  const [d1, d2, d3] = splitDigits(timeLeft.days);
+  const [d1, d2, d3] = splitDigits(timeLeft.days, 3);
   const [h1, h2] = splitDigits(timeLeft.hours);
   const [m1, m2] = splitDigits(timeLeft.minutes);
   const [s1, s2] = splitDigits(timeLeft.seconds);
