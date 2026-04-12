@@ -27,3 +27,11 @@ body {
   margin: 0;
   border-radius: 10px;
 }
+
+.credits-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
