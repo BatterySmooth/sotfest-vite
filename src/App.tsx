@@ -2,7 +2,7 @@ import { AppProvider } from '@core/AppProvider';
 import { AppHeader } from '@components/AppHeader';
 import { ParallaxHeader } from '@components/ParallaxHeader';
 import { ImageGallery } from '@blocks/ImageGallery';
-import { Article } from '@blocks/Article';
+// import { Article } from '@blocks/Article';
 import '@/App.css';
 
 const App = () => {
