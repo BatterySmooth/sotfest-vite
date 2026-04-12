@@ -11,7 +11,7 @@ export default defineConfig({
     svgr(),
     react(),
   ],
-  base: '/sotfest-vite/',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
