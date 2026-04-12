@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* gap: 2rem; */
+  margin-top: 2rem;
+}
+
+.item {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.item img {
+  max-width: 100%;
+  max-height: 100%;
+}
