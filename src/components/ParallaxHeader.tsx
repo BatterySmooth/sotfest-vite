@@ -2,26 +2,23 @@ import { useContext, useEffect, useRef, type ReactNode } from "react"
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all'
-import { AppContext } from "@core/AppProvider"
-import style from './ParallaxHeader.module.css'
-import full from "@assets/layers/Full.png"
-import layer1 from "@assets/layers/1.png"
-import layer2 from "@assets/layers/2.png"
-import fire from "@assets/layers/fire.gif"
-import layer3 from "@assets/layers/3.png"
-import layer4 from "@assets/layers/4.png"
-import layer5 from "@assets/layers/5.png"
-import layer6 from "@assets/layers/6.jpg"
-import logo from "@assets/logo.jpg"
-import xbrush from "@assets/xbrushed.png"
-import xbrush2 from "@assets/xbrushed2.png"
+import type { ResponsiveImageSource } from '@/types/ResponsiveImageSource';
+import { AppContext } from '@core/AppProvider';
+import * as layers from '@core/ParallaxLayers';
+import fire from '@assets/layers/fire.gif';
+import logo from '@assets/logo.jpg';
+import xbrush from '@assets/xbrushed.png';
+import xbrush2 from '@assets/xbrushed2.png';
+import style from '@components/ParallaxHeader.module.css';
+
+const doHueShift = true;
 
 interface ParallaxHeaderProps {
   children: ReactNode,
 }
 
 interface ParallaxLayer {
-  source: string,
+  source: ResponsiveImageSource | string,
   factor: number,
   flags: number,
 }
@@ -36,17 +33,16 @@ const LayerFlags = {
 } as const;
 
 const allLayers: ParallaxLayer[] = [
-  { source: full,    factor: 0,  flags: LayerFlags.None },
-  { source: layer6,  factor: 98, flags: LayerFlags.HueShift }, 
-  { source: layer5,  factor: 98, flags: LayerFlags.HueShift },
-  { source: layer4,  factor: 95, flags: LayerFlags.HueShift },
-  { source: layer3,  factor: 70, flags: LayerFlags.HueShift },
-  { source: fire,    factor: 50, flags: LayerFlags.IsFire },
-  { source: layer2,  factor: 50, flags: LayerFlags.HueShift },
-  { source: xbrush,  factor: 80, flags: LayerFlags.IsHero },
-  { source: xbrush2, factor: 90, flags: LayerFlags.IsHero },
-  { source: logo,    factor: 85, flags: LayerFlags.IsHero },
-  { source: layer1,  factor: 0,  flags: LayerFlags.None },
+  { source: layers.l6, factor: 98, flags: LayerFlags.HueShift },
+  { source: layers.l5, factor: 98, flags: LayerFlags.HueShift },
+  { source: layers.l4, factor: 95, flags: LayerFlags.HueShift },
+  { source: layers.l3, factor: 70, flags: LayerFlags.HueShift },
+  { source: fire,      factor: 50, flags: LayerFlags.IsFire },
+  { source: layers.l2, factor: 50, flags: LayerFlags.HueShift },
+  { source: xbrush,    factor: 80, flags: LayerFlags.IsHero },
+  { source: xbrush2,   factor: 90, flags: LayerFlags.IsHero },
+  { source: logo,      factor: 85, flags: LayerFlags.IsHero },
+  { source: layers.l1, factor: 0,  flags: LayerFlags.None },
 ];
 
 function hasFlags(layer: ParallaxLayer, flags: number) {
@@ -56,29 +52,55 @@ function hasFlags(layer: ParallaxLayer, flags: number) {
 function filterLayers(reduceMotion: boolean) {
   if (reduceMotion) {
     return allLayers.filter(l =>
-      l.source === full ||
+      l.source === layers.full ||
       hasFlags(l, LayerFlags.IsHero)
     );
   }
   else {
     return allLayers.filter(l =>
-      l.source !== full
+      l.source !== layers.full
     );
   }
 }
 
 function renderLayer(layer: ParallaxLayer, index: number): ReactNode {
-  return (
-    hasFlags(layer, LayerFlags.IsFire) ?
+  const isFire = hasFlags(layer, LayerFlags.IsFire);
+  const isHero = hasFlags(layer, LayerFlags.IsHero);
+  const className = `${style.layer} ${isHero ? style.hero : ""}`;
+  // Static image
+  if (typeof layer.source === "string") {
+    return isFire ? (
+      <div key={index} className={style.layer}>
+        <img src={layer.source} className={style.fire} />
+      </div>
+    ) : (
+      <img key={index} src={layer.source} className={className} />
+    );
+  }
+  const img = (
+    <img
+      src={layer.source.src}
+      srcSet={layer.source.srcSet}
+      sizes="100vw"
+      className={isFire ? style.fire : className}
+      loading="lazy"
+    />
+  );
+  return isFire ? (
     <div key={index} className={style.layer}>
-      <img src={layer.source} className={style.fire} />
+      {img}
     </div>
-    :
-    <img key={index} src={layer.source} className={`${style.layer} ${hasFlags(layer, LayerFlags.IsHero) ? style.hero : ''}`} />
+  ) : (
+    <img
+      key={index}
+      src={layer.source.src}
+      srcSet={layer.source.srcSet}
+      sizes="100vw"
+      className={className}
+      loading="lazy"
+    />
   );
 }
-
-const doHueShift = false;
 
 export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
   const context = useContext(AppContext);
