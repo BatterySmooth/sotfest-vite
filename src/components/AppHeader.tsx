@@ -36,10 +36,10 @@ export const AppHeader: React.FC = () => {
     return () => clearInterval(interval);
   }, [calculateTimeLeft]);
 
-  const splitDigits = (num: number, len: number = 2): string[] => 
-    String(num).padStart(len, "0").split("");
+  const splitDigits = (num: number, len: number = 2, pad: "0" | " " = "0"): string[] => 
+    String(num).padStart(len, pad).split("");
 
-  const [d1, d2, d3] = splitDigits(timeLeft.days, 3);
+  const [d1, d2, d3] = splitDigits(timeLeft.days, 3, " ");
   const [h1, h2] = splitDigits(timeLeft.hours);
   const [m1, m2] = splitDigits(timeLeft.minutes);
   const [s1, s2] = splitDigits(timeLeft.seconds);
