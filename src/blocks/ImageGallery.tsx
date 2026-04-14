@@ -52,7 +52,8 @@ const getImagesForYear = async (year: string) => {
         name: file.name,
         url: urlData.publicUrl,
       };
-    });
+    })
+    .sort((a, b) => Number(b.name) - Number(a.name)); // newest first
 }
 
 export const ImageGallery: React.FC = () => {
