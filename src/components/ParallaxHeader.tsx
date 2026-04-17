@@ -1,10 +1,12 @@
-import { useContext, useEffect, useRef, type ReactNode } from "react"
+import { useContext, useEffect, useRef, useState, type ReactNode } from "react"
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all'
 import type { ResponsiveImageSource } from '@/types/ResponsiveImageSource';
 import { AppContext } from '@core/AppProvider';
+import { preloadImage } from "@/core/Preloaders";
 import * as layers from '@core/ParallaxLayers';
+import { ParallaxPreloader } from "@components/ParallaxPreloader";
 import fire from '@assets/layers/fire.gif';
 import logo from '@assets/logo.jpg';
 import xbrush from '@assets/xbrushed.png';
@@ -50,17 +52,9 @@ function hasFlags(layer: ParallaxLayer, flags: number) {
 }
 
 function filterLayers(reduceMotion: boolean) {
-  if (reduceMotion) {
-    return allLayers.filter(l =>
-      l.source === layers.full ||
-      hasFlags(l, LayerFlags.IsHero)
-    );
-  }
-  else {
-    return allLayers.filter(l =>
-      l.source !== layers.full
-    );
-  }
+  return reduceMotion
+    ? allLayers.filter(l => l.source === layers.full || hasFlags(l, LayerFlags.IsHero))
+    : allLayers.filter(l => l.source !== layers.full)
 }
 
 function renderLayer(layer: ParallaxLayer, index: number): ReactNode {
@@ -86,39 +80,61 @@ function renderLayer(layer: ParallaxLayer, index: number): ReactNode {
       loading="lazy"
     />
   );
-  return isFire ? (
-    <div key={index} className={style.layer}>
-      {img}
-    </div>
-  ) : (
-    <img
-      key={index}
-      src={layer.source.src}
-      srcSet={layer.source.srcSet}
-      sizes="100vw"
-      className={className}
-      loading="lazy"
-    />
-  );
+  return isFire
+    ? (
+      <div key={index} className={style.layer}>
+        {img}
+      </div>
+    )
+    : (
+      <img
+        key={index}
+        src={layer.source.src}
+        srcSet={layer.source.srcSet}
+        sizes="100vw"
+        className={className}
+        loading="lazy"
+      />
+    );
 }
 
 export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
   const context = useContext(AppContext);
   if (!context) throw new Error("Must be used inside AppProvider");
 
+  const [ready, setReady] = useState(false);
   const layers = filterLayers(context.isReducedMotion);
   const isStatic = context.isTouch || context.isNoHover || context.isReducedMotion;
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (isStatic) return;
+    if (!ready || isStatic) return;
     ScrollSmoother.create({
       smooth: 1,
     });
-  }, [isStatic]);
+  }, [ready, isStatic]);
+
+  // Preload
+  useEffect(() => {
+    Promise.all(
+      layers.map((layer) => {
+        if (typeof layer.source === "string") {
+          return preloadImage(layer.source);
+        }
+
+        return preloadImage(
+          layer.source.src,
+          layer.source.srcSet,
+          "100vw"
+        );
+      })
+    ).then(() => {
+      setReady(true);
+    });
+  }, [layers]);
 
   useEffect(() => {
-    if (isStatic) return;
+    if (!ready || isStatic) return;
     if (!parallaxRef.current) return;
     const layersEl = parallaxRef.current.querySelectorAll<HTMLElement>(`.${style.layer}`);
     layersEl.forEach((layer, i) => {
@@ -134,7 +150,14 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
         },
       });
     });
-  }, [layers, isStatic]);
+  }, [ready, layers, isStatic]);
+
+  // Preloader
+  if (!ready) {
+    return (
+      <ParallaxPreloader />
+    );
+  }
 
   // Static header
   if (isStatic) {
