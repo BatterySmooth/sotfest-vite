@@ -6,7 +6,6 @@ import type { ResponsiveImageSource } from '@/types/ResponsiveImageSource';
 import { AppContext } from '@core/AppProvider';
 import { preloadImage } from "@/core/Preloaders";
 import * as layers from '@core/ParallaxLayers';
-import { ParallaxPreloader } from "@components/ParallaxPreloader";
 import fire from '@assets/layers/fire.gif';
 import logo from '@assets/logo.jpg';
 import xbrush from '@assets/xbrushed.png';
@@ -103,8 +102,10 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
   if (!context) throw new Error("Must be used inside AppProvider");
 
   const [ready, setReady] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const layers = filterLayers(context.isReducedMotion);
   const isStatic = context.isTouch || context.isNoHover || context.isReducedMotion;
+  const loaderRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -121,7 +122,6 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
         if (typeof layer.source === "string") {
           return preloadImage(layer.source);
         }
-
         return preloadImage(
           layer.source.src,
           layer.source.srcSet,
@@ -152,34 +152,41 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
     });
   }, [ready, layers, isStatic]);
 
-  // Preloader
-  if (!ready) {
-    return (
-      <ParallaxPreloader />
-    );
-  }
+  useEffect(() => {
+    if (!ready) return;
+    if (!loaderRef.current) return;
+    gsap.to(loaderRef.current, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+      onComplete: () => setShowLoader(false)
+    });
+  }, [ready]);
 
-  // Static header
-  if (isStatic) {
-    return (
-      <>
-        <div className={style.container}>
-          {layers.map(renderLayer)}
-        </div>
-        {children}
-      </>
-    );
-  }
-  // Parallax header
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
-        <div className={style.container} ref={parallaxRef}>
-          {layers.map(renderLayer)}
+    <>
+      {showLoader &&
+        <div ref={loaderRef} className={style.loaderScreen}>
+          <div className={style.spinner} />
         </div>
-        <div className={style.seam}></div>
-        {children}
-      </div>
-    </div>
+      }
+      {ready && (isStatic
+        ? <>
+          <div className={style.container}>
+            {layers.map(renderLayer)}
+          </div>
+          {children}
+        </>
+        : <div id="smooth-wrapper">
+          <div id="smooth-content">
+            <div className={style.container} ref={parallaxRef}>
+              {layers.map(renderLayer)}
+            </div>
+            <div className={style.seam}></div>
+            {children}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
