@@ -12,7 +12,9 @@ import xbrush from '@assets/xbrushed.png';
 import xbrush2 from '@assets/xbrushed2.png';
 import style from '@components/ParallaxHeader.module.css';
 
-const doHueShift = true;
+const doHueShift: boolean = true;
+const loaderFadeDuration: number = 0.5;
+const loaderFadeEasingFunction: string = "power4.in";
 
 interface ParallaxHeaderProps {
   children: ReactNode,
@@ -157,8 +159,8 @@ export const ParallaxHeader: React.FC<ParallaxHeaderProps> = ({ children }) => {
     if (!loaderRef.current) return;
     gsap.to(loaderRef.current, {
       opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
+      duration: loaderFadeDuration,
+      ease: loaderFadeEasingFunction,
       onComplete: () => setShowLoader(false)
     });
   }, [ready]);

@@ -3,6 +3,7 @@
   position: fixed;
   inset: 0;
   background: var(--theme-background);
+  /* background: color-mix(in srgb, var(--theme-background), transparent 0.00001%); */
   display: flex;
   justify-content: center;
   align-items: center;
