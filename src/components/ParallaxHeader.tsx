@@ -4,12 +4,12 @@ import { useGSAP } from '@gsap/react'
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all'
 import type { ResponsiveImageSource } from '@/types/ResponsiveImageSource';
 import { AppContext } from '@core/AppProvider';
-import { preloadImage } from "@/core/Preloaders";
+import { preloadImage } from "@core/Preloaders";
 import * as layers from '@core/ParallaxLayers';
 import fire from '@assets/layers/fire.gif';
-import logo from '@assets/logo.jpg';
-import xbrush from '@assets/xbrushed.png';
-import xbrush2 from '@assets/xbrushed2.png';
+// import logo from '@assets/logo.jpg';
+// import xbrush from '@assets/xbrushed.png';
+// import xbrush2 from '@assets/xbrushed2.png';
 import style from '@components/ParallaxHeader.module.css';
 
 const doHueShift: boolean = true;
@@ -42,9 +42,9 @@ const allLayers: ParallaxLayer[] = [
   { source: layers.l3, factor: 70, flags: LayerFlags.HueShift },
   { source: fire,      factor: 50, flags: LayerFlags.IsFire },
   { source: layers.l2, factor: 50, flags: LayerFlags.HueShift },
-  { source: xbrush,    factor: 80, flags: LayerFlags.IsHero },
-  { source: xbrush2,   factor: 90, flags: LayerFlags.IsHero },
-  { source: logo,      factor: 85, flags: LayerFlags.IsHero },
+  // { source: xbrush,    factor: 80, flags: LayerFlags.IsHero },
+  // { source: xbrush2,   factor: 90, flags: LayerFlags.IsHero },
+  // { source: logo,      factor: 85, flags: LayerFlags.IsHero },
   { source: layers.l1, factor: 0,  flags: LayerFlags.None },
 ];
 

@@ -8,7 +8,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-const targetDate: Date = new Date("2026-07-10T09:00:00");
+const targetDate: Date = new Date("2026-07-10T11:00:00");
 
 export const AppHeader: React.FC = () => {
   const calculateTimeLeft = useCallback((): TimeLeft => {
